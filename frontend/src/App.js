@@ -92,7 +92,7 @@ function App() {
         {loading && (
           <div className="message-wrapper bot">
             <div className="bot-avatar">
-              <img src="https://via.placeholder.com/30" alt="Bot" />
+              <img src={botAvatar} alt="Bot" />
             </div>
             <div className="message bot typing">
               <span className="typing-indicator">
