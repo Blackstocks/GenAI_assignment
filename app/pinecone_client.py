@@ -57,7 +57,7 @@ def upsert_restaurant_data(filepath):
 
 
     # data_file_path = os.path.join("synthetic_restaurant_reviews.txt")  # Make sure this path is correct
-    upsert_restaurant_data("F:\\zomato\\rag_chatbot\\synthetic_restaurant_reviews.txt")
+    upsert_restaurant_data("//app//ingestion//restaurant_info.txt")
 
 # # Adding data to Pinecone
 # def add_to_pinecone(restaurant_data):

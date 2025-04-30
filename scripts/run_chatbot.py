@@ -1,10 +1,6 @@
 import sys
 import os
 
-# if os.path.isdir("f:\\zomato\\rag_chatbot\\app"):
-#     print("Folder exists")
-# else:
-#     print("Folder does not exist")
 
 # Add the project root (rag_chatbot) to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -15,6 +11,6 @@ from app.retrieval.generator import generate_answer
 
 from app.retrieval.generator import generate_answer
 
-query = "Suggest restaurants with price range less than 20?"
+query = "What are the item in menu in Saravana Bhavan restraunt at janpath"
 response = generate_answer(query)
 print(response)
