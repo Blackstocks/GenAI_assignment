@@ -1,15 +1,25 @@
 // src/App.js
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
 import { Typewriter } from "react-simple-typewriter";
+import botAvatar from '../src/bot.png';
 
 function App() {
   const [messages, setMessages] = useState([
-    { from: "bot", text: "👋 Hi! I’m Zomato Bot. What would you like to know?" },
+    { from: "bot", text: "👋 Hi! I'm Zomato Bot. What would you like to know?" },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [botTypingText, setBotTypingText] = useState("");
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, loading, botTypingText]);
 
   const sendMessage = async () => {
     if (!input.trim()) return;
@@ -47,55 +57,104 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h2>Zomato Chatbot 🍽️</h2>
-      <div className="chat-window">
+    <div className="chat-container">
+      <div className="chat-header">
+        <div className="profile">
+          <div className="avatar">
+            <img src={botAvatar} alt="Bot avatar" />
+          </div>
+          <div className="info">
+            <h3>Zomato Bot</h3>
+            <span className="status">
+              <span className="status-dot"></span> We're online!
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div className="messages-container">
         {messages.map((msg, idx) => (
           <div
             key={idx}
-            className={`message ${msg.from === "bot" ? "bot" : "user"}`}
+            className={`message-wrapper ${msg.from === "bot" ? "bot" : "user"}`}
           >
-            <span>{msg.text}</span>
+            {msg.from === "bot" && (
+              <div className="bot-avatar">
+                <img src={botAvatar} alt="Bot" />
+              </div>
+            )}
+            <div className={`message ${msg.from}`}>
+              <span>{msg.text}</span>
+            </div>
           </div>
         ))}
 
         {loading && (
-          <div className="message bot">
-            <em>🤖 Thinking...</em>
+          <div className="message-wrapper bot">
+            <div className="bot-avatar">
+              <img src="https://via.placeholder.com/30" alt="Bot" />
+            </div>
+            <div className="message bot typing">
+              <span className="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </div>
           </div>
         )}
 
         {botTypingText && !loading && (
-          <div className="message bot">
-            <span className="typewriter">
-              <Typewriter
-                words={[botTypingText]}
-                loop={1}
-                cursor
-                typeSpeed={40}
-                deleteSpeed={9999}
-                delaySpeed={1000}
-                onLoopDone={() => {
-                  setMessages((prev) => [
-                    ...prev,
-                    { from: "bot", text: botTypingText },
-                  ]);
-                  setBotTypingText("");
-                }}
-              />
-            </span>
+          <div className="message-wrapper bot">
+            <div className="bot-avatar">
+              <img src="https://via.placeholder.com/30" alt="Bot" />
+            </div>
+            <div className="message bot">
+              <span className="typewriter">
+                <Typewriter
+                  words={[botTypingText]}
+                  loop={1}
+                  cursor
+                  typeSpeed={40}
+                  deleteSpeed={9999}
+                  delaySpeed={1000}
+                  onLoopDone={() => {
+                    setMessages((prev) => [
+                      ...prev,
+                      { from: "bot", text: botTypingText },
+                    ]);
+                    setBotTypingText("");
+                  }}
+                />
+              </span>
+            </div>
           </div>
         )}
+        <div ref={messagesEndRef} />
       </div>
 
-      <div className="input-area">
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyPress}
-          placeholder="Type your message..."
-        />
-        <button onClick={sendMessage}>Send</button>
+      <div className="chat-footer">
+        <div className="input-wrapper">
+          <button className="emoji-button">😊</button>
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyPress}
+            placeholder="Enter your message..."
+          />
+          <button
+            className="send-button"
+            onClick={sendMessage}
+            disabled={!input.trim()}
+          >
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+            </svg>
+          </button>
+        </div>
+        <div className="powered-by">
+          POWERED BY <strong>ZOMATO</strong>
+        </div>
       </div>
     </div>
   );
