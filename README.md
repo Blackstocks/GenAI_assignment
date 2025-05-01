@@ -22,16 +22,21 @@ GenAI_assignment/
 │
 ├── app/
 │   ├── ingestion/
-│   │   ├── main.py        # Runs scraper and processor
-│   │   ├── scraper.py     # Scrapes data (custom logic)
-│   │   └── processor.py   # Processes and saves data
+│   │   ├── main.py               # Runs scraper and processor
+│   │   ├── scraper.py            # Scrapes data (custom logic)
+│   │   └── processor.py          # Processes and saves data
+|   |   └── restaurant_info.txt   # Data of scraped restaurants are saved here           
 │   └── retrieval/
-│       └── generator.py   # Generates answers from indexed data
-│
-├── frontend/              # React-based frontend UI
-├── main.py                # FastAPI app entry point
-├── requirements.txt       # Python dependencies
-└── .env.example           # Sample environment config
+│       └── generator.py          # Generates answers from indexed data
+|
+├── frontend/                     # React-based frontend UI
+|
+│── scripts/
+│   ├── ingest_data.py 
+│   ├── run_chatbot.py            # code for running the chatbot
+├── main.py                       # FastAPI app entry point
+├── requirements.txt              # Python dependencies
+└── .env.example                  # Sample environment config
 ```
 
 ---
@@ -118,6 +123,7 @@ There is a `.env.example` file in the project. Create a `.env` file in the same 
 
 - **Frontend:** React, Tailwind CSS, Typewriter effect  
 - **Backend:** FastAPI, Python  
+- **Database** Pinecone (for chunking and storing as vector)
 - **Scripts:** `subprocess`-based pipeline runner  
 - **Other:** CORS, Pydantic, Uvicorn  
 
