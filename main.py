@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import subprocess
+import sys
 from app.retrieval.generator import generate_answer  # Use your existing function to generate chatbot answers
 
 # Initialize FastAPI app
@@ -51,7 +52,7 @@ async def save_query(data: QueryData):
 
         try:
             # Run the ingestion script to update vector DB [pinecone]
-            subprocess.run(["python", "app/ingestion/main.py"], check=True)
+            subprocess.run([sys.executable, "app/ingestion/main.py"], check=True)
         except subprocess.CalledProcessError as e:
             # If the script fails, returning error message
             return {"success": False, "message": f"Script error: {e}"}
