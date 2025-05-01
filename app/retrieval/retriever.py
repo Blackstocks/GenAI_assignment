@@ -12,5 +12,5 @@ def retrieve_documents(query: str, top_k: int = 5) -> list:
     query_embedding = response.embeddings[0]
     result = index.query(vector=query_embedding, top_k=top_k, include_metadata=True)
 
-    documents = [match['metadata']['text'] for match in result['matches']]
+    documents = [match['metadata']['text'] for match in result['matches'] if 'text' in match['metadata']]
     return documents

@@ -1,7 +1,6 @@
 The Curry Room, Kharagpur
 Farzi Cafe, Connaught Place New Delhi
 Big Chill, Khan Market New Delhi
-indian accent, lodhi-road new-delhi
 Sagar Ratna, Defence Colony New Delhi
 Social, Hauz Khas
 Diggin, Anand Lok New Delhi
@@ -10,3 +9,5 @@ Saravana Bhavan, Janpath New Delhi
 Food Studio, Kharagpur
 biryani blues, connaught-place new-delhi
 tamasha, connaught-place new-delhi
+truptee restaurant, Madusudhan Nagar Unit 4 Bhubaneshwar
+bling it on hotel marrion, kharabela-nagar bhubaneshwar
