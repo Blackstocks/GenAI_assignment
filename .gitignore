@@ -1,7 +1,32 @@
-.env
-
-# Ignore Python virtual environments
+# Virtual environments
 venv/
 env/
-ENV/
 .venv/
+ENV/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# macOS system files
+.DS_Store
+
+# Environment variables
+.env
+
+# VSCode config (if used)
+.vscode/
+
+# Jupyter Notebook checkpoints (if applicable)
+.ipynb_checkpoints/
+
+# Logs and coverage
+*.log
+*.coverage
+coverage/
+
+# PyInstaller
+dist/
+build/
+*.spec
